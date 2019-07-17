@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropper/4.0.0/cropper.css">
+    <title>Document</title>
+    <style>
+        .message-list {
+            margin-top: 30px;
+            margin-bottom: 50px;
+        }
+        .message-list-item {
+            border: 1px solid lightgray;
+            border-radius: 5px;
+            padding: 5px 20px 5px 20px;
+            position: relative;
+            margin-bottom: 5px;
+        }
+        .message-list-item:hover {
+            cursor: pointer;
+        }
+        .message-list-item-title {
+            margin-right: 20px;
+            font-size: 15px;
+            display: inline-block;
+        }
+        .message-list-item-subtitle {
+            font-size: 12px;
+            color: gray;
+        }
+        .message-list-item-text {
+            display: none;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-size: 15px;
+        }
+        .message-list-item-status {
+            font-size: 10px;
+            color: blue;
+            display: inline-block;
+            position: absolute;
+            left: 95%;
+        }
+        .container {
+            margin-top: 30px;
+        }
+        .button {
+            text-align: right;
+        }
+        .btn-secondary {
+            margin: 20px;
+        }
+        .btn-logout {
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .label {
+            display: inline-block;
+            vertical-align: middle;
+            font-size: 20px;
+        }
+        .input-group {
+            margin-top: 10px;
+        }
+        .chat-list {
+            display: block;
+        }
+        .chat-item-other {
+            color: blue;
+            text-align: left;
+            margin-bottom: 15px;
+            border-bottom: 1px solid lightgray;
+        }
+        .chat-item-my {
+            margin-bottom: 15px;
+            border-bottom: 1px solid lightgray;
+            text-align: right;
+        }
+        .btn-modal {
+            display: block;
+            margin-bottom: 20px;
+        }
+        .btn-close {
+            margin-left: 10px;
+        }
+        .modal-body {
+            overflow: auto;
+            width: 100%; 
+            height: 40vh;
+        }
+        .modal-dialog {
+            width: 100%;
+        }
+        .modal-content {
+            width: 100%;
+        }
+        .message-list-item-dialog {
+            display: none;
+        }
+        img {
+            width: 200px;
+            height: 200px;
+            max-width: 100%;
+        }
+        .chat-item-img {
+            margin-bottom: 10px;
+        }
+        .modal-canvas {
+            width: 700px;
+        }
+        .modal-canvas-footer {
+            width: 700px;
+        }
+        #canvas {
+            width: 700px;
+            height: 700px;
+            border: 1px solid #aaa;
+        }
+        #result-cropper {
+            text-align: center;
+        }
+        #upload_img {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="button">
+        <div class="label">
+            Admin
+        </div>
+        <div class="btn-logout">
+            <button class="btn btn-secondary" type="submit" id="logout">Выход</button>
+        </div>
+    </div>
+
+
+
+    <div class="container" id="container">
+        <h3>Список заявок:</h2>
+       
+        <div class="message-list col-md-12" id="message-list">
+         <% messages.forEach(function(item) { 
+             if (item.status == 0) { 
+                 if (item.filename == null) { %>
+                    <div class="message-list-item" id=<%= item.id %>>
+                        <div class="message-list-item-title"><%= item.title%></div>
+                        <div class="message-list-item-status">New</div>
+                        <div class="message-list-item-subtitle">Отправитель: <%= item.username %></div>
+                        <div class="message-list-item-text"><%= item.descr %></div>
+                        <div class="message-list-item-dialog" id="modal<%= item.id %>">
+                            <div class="modal-conent">
+                                <div class="modal-header">
+                                    Диалог
+                                </div>
+                                <div class="modal-body" id="modalBody<%= item.id %>">
+    
+                                </div>
+                                <div class="modal-footer" id="modalFooter<%= item.id %>">
+                                    <input type="text" class="form-control" placeholder="Сообщение" id="inputMessage<%= item.id %>">
+                                    <input type="file" id="inputFile<%= item.id %>">
+                                    <button class="btn btn-primary" type="button" id="buttonSend">Отправить</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" id=<%= item.id %> class="btn btn-primary btn-modal">
+                        Открыть диалог
+                    </button>
+                   
+            <%  } else { %>
+                    <div class="message-list-item" id=<%= item.id %>>
+                        <div class="message-list-item-title"><%= item.title%></div>
+                        <div class="message-list-item-status">New</div>
+                        <div class="message-list-item-subtitle">Отправитель: <%= item.username %></div>
+                        <div class="message-list-item-text"><%= item.descr %></div>
+                        <a href="/download/<%= item.filename%>" class="message-list-item-file btn-modal">Файл</a>
+                        <div class="message-list-item-dialog" id="modal<%= item.id %>">
+                            <div class="modal-conent">
+                                <div class="modal-header">
+                                    Диалог
+                                </div>
+                                <div class="modal-body" id="modalBody<%= item.id %>">
+    
+                                </div>
+                                <div class="modal-footer" id="modalFooter<%= item.id %>">
+                                    <input type="text" class="form-control" placeholder="Сообщение" id="inputMessage<%= item.id %>">
+                                    <input type="file" id="inputFile<%= item.id %>">
+                                    <button class="btn btn-primary" type="button" id="buttonSend">Отправить</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" id=<%= item.id %> class="btn btn-primary btn-modal">
+                        Открыть диалог
+                    </button>
+            <%   };
+                };
+            }); %>
+         </div>
+
+        <div class="modal fade bd-example-modal-lg" id="canvasModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content modal-canvas">
+                    <button id="crop" class="btn btn-primary">Обрезать</button>
+                    <div>
+                        <canvas id="canvas" class="canvas">
+
+                        </canvas>
+                    </div>
+                    <div id="result-cropper"></div>
+                    <form action="/uploadImg" method="POST">
+                        <input type="hidden" name="file_name" id="file_name">
+                        <input type="hidden" name="cropped_img" id="cropped_img">
+                        <button class="btn btn-primary" type="submit" id="upload_img" name="upload_img" disabled>Сохранить</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <script
+        src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropper/4.0.0/cropper.js"></script>
+    <script src="/public/js/second.js"></script>
+</body>
+</html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.3/cropper.css" >
+    <title>Document</title>
+    <style>
+        input {
+            margin-top: 20px;
+        }
+        textarea {
+            margin-top: 20px;
+        }
+        button {
+            margin-top: 20px;
+        }
+        .button {
+            text-align: right;
+        }
+        .btn-secondary {
+            margin: 20px;
+        }
+        h3 {
+            margin-top: 30px;
+        }
+        .message-list {
+            margin-top: 30px;
+            margin-bottom: 50px;
+        }
+        .message-list-item {
+            border: 1px solid lightgray;
+            border-radius: 5px;
+            padding: 5px 20px 5px 20px;
+        }
+        .message-list-item:hover {
+            cursor: pointer;
+        }
+        .message-list-item-title {
+            margin-right: 20px;
+            font-size: 17px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .message-list-item-text {
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-size: 12px;
+        }
+        .message-list-item-status {
+            font-size: 10px;
+            color: blue;
+            display: inline-block;
+            vertical-align: middle;
+            position: absolute;
+            left: 92%;
+        }
+        .message-list-item-status-processed {
+            font-size: 10px;
+            color: orange;
+            display: inline-block;
+            vertical-align: middle;
+            position: absolute;
+            left: 92%;
+        }
+        .btn-secondary {
+            margin: 20px;
+        }
+        .btn-logout {
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .label {
+            display: inline-block;
+            vertical-align: middle;
+            font-size: 20px;
+        }
+        .btn-modal {
+            display: block;
+            margin-bottom: 20px;
+            margin-top: 7px;
+        }
+        .btn-close {
+            margin-left: 10px;
+        }
+        .mBody {
+            overflow: auto; 
+            width: 100%;
+            height: 40vh;
+        }
+        .modal-dialog {
+            width: 100%;
+        }
+        .modal-content {
+            width: 740px;
+        }
+        .mContent {
+            width: 100%;
+        }
+        .chat-item-other {
+            color: blue;
+            text-align: left;
+            margin-bottom: 15px;
+            border-bottom: 1px solid lightgray;
+        }
+        .chat-item-my {
+            margin-bottom: 15px;
+            border-bottom: 1px solid lightgray;
+            text-align: right;
+        }
+        .chat-item-img {
+            margin-bottom: 10px;
+        }
+        img {
+            width: 200px;
+            height: 200px;
+            max-width: 100%;
+        }
+        .modal-canvas {
+            width: 700px;
+        }
+        .modal-canvas-footer {
+            width: 700px;
+        }
+        #canvas {
+            width: 700px;
+            height: 700px;
+            border: 1px solid #aaa;
+        }
+        #result-cropper {
+            text-align: center;
+        }
+        #upload_img {
+            width: 100%;
+        }
+        @media (min-width: 576px){
+            .modal-dialog {
+                max-width: 700px;
+            }
+        }
+        .btn-crop {
+            width: 99%;
+            margin-bottom: 15px; 
+        }
+        #cropper {
+            width: 700px;
+            height: 700px;
+        }
+        #image {
+            width: 700px;
+            height: 700px;
+            max-width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div id="app"></div>
+
+    <script
+        src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.3/cropper.js"></script>
+    <script src="/public/js/build.js"></script>
+</body>
+</html>

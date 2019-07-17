@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <title>Document</title>
+    <style>
+        .message-list {
+            margin-top: 30px;
+            margin-bottom: 50px;
+        }
+        .message-list-item {
+            border: 1px solid lightgray;
+            border-radius: 5px;
+            padding: 5px 20px 5px 20px;
+            position: relative;
+            margin-bottom: 20px;
+        }
+        .message-list-item:hover {
+            cursor: pointer;
+            background-color: lightblue;
+        }
+        .message-list-item-title {
+            margin-right: 20px;
+            font-size: 15px;
+            display: inline-block;
+        }
+        .message-list-item-subtitle {
+            font-size: 12px;
+            color: gray;
+        }
+        .message-list-item-text {
+            display: none;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-size: 15px;
+        }
+        .message-list-item-status {
+            font-size: 10px;
+            color: blue;
+            display: inline-block;
+            position: absolute;
+            left: 95%;
+        }
+        .container {
+            margin-top: 30px;
+        }
+        .button {
+            text-align: right;
+        }
+        .btn-secondary {
+            margin: 20px;
+        }
+        .btn-logout {
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .label {
+            display: inline-block;
+            vertical-align: middle;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="button">
+        <div class="label">
+            Admin
+        </div>
+        <div class="btn-logout">
+            <button class="btn btn-secondary" type="submit" id="logout">Выход</button>
+        </div>
+    </div>
+
+
+
+    <div class="container" id="container">
+        <h3>Список заявок:</h2>
+        <% 
+        <div class="message-list col-md-12" id="message-list"></div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="./js/second.js"></script>
+</body>
+</html>
